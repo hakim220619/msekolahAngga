@@ -38,8 +38,7 @@
                         <div class="row">
                             <div class="col-md-6">
                                 <div class="mb-3">
-                                    <label class="col-md-2 col-form-label" for="full_name">Nama
-                                        Lengkap</label>
+                                    <label class="col-md-2 col-form-label" for="full_name">Nama</label>
                                     <input type="text" class="form-control" id="full_name" name="full_name"
                                         value="{{ old('full_name') }}" placeholder="Masukan Nama Lengkap" required />
                                 </div>
@@ -61,8 +60,8 @@
                                 
                             </div>
                             <div class="col-md-6">
-                                <div class="mb-3 ">
-                                    <label class="col-md-2 col-form-label" for="tlp">Nomor
+                                <div class="mb-3">
+                                    <label class="col-form-label" for="tlp">Nomor
                                         Telepon</label>
                                     <input type="text" class="form-control" id="phone" name="phone"
                                         value="{{ old('phone') }}" placeholder="Masukan Nomor Telepon" required />

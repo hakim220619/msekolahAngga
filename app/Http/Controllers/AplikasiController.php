@@ -28,23 +28,23 @@ class AplikasiController extends Controller
                 $image->move(public_path('storage/images/logo'), $filename);
                 $data = [
                     'title' => $request->title,
-                    'owner' => $request->owner,
+                    'nama_owner' => $request->owner,
                     'address' => $request->address,
-                    'telephone' => $request->telephone,
+                    'tlp' => $request->telephone,
                     'app_name' => $request->app_name,
                     'copy_right' => $request->copy_right,
-                    'version' => $request->version,
+                    'versi' => $request->version,
                     'logo' => $request->file('image')->getClientOriginalName(),
                 ];
             } else {
                 $data = [
                     'title' => $request->title,
-                    'owner' => $request->owner,
+                    'nama_owner' => $request->owner,
                     'address' => $request->address,
-                    'telephone' => $request->telephone,
+                    'tlp' => $request->telephone,
                     'app_name' => $request->app_name,
                     'copy_right' => $request->copy_right,
-                    'version' => $request->version,
+                    'versi' => $request->version,
                 ];
             }
             // dd($data);

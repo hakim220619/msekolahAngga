@@ -14,7 +14,7 @@ class UsersController extends Controller
 {
     function view()
     {
-        $data['title'] = "Users";
+        $data['title'] = "Pegawai";
         $data['status'] = ['ON', 'OFF'];
         // dd($data['status']);
         $data['users'] = DB::table('users')->where('role', 2)->get();
@@ -22,7 +22,7 @@ class UsersController extends Controller
     }
     function addUsers()
     {
-        $data['title'] = "Tambah Users";
+        $data['title'] = "Tambah Pegawai";
         return view('backend.users.add', $data);
     }
     function addProses(Request $request)
@@ -45,7 +45,7 @@ class UsersController extends Controller
                 'address' => $request->address,
                 'email_verified_at' => now(),
                 'password' => Hash::make($request->password),
-                'role' => 1,
+                'role' => 2,
                 'image' => $request->file('image')->getClientOriginalName(),
                 'status' => $request->status,
                 'remember_token' => base64_encode($request->email),

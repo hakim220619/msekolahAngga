@@ -1,10 +1,12 @@
 <?php
 
+use App\Http\Controllers\AbsensiController;
 use App\Http\Controllers\AdminController;
 use App\Http\Controllers\AplikasiController;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\AuthController;
 use App\Http\Controllers\DashboardController;
+use App\Http\Controllers\GajiController;
 use App\Http\Controllers\KriteriaController;
 use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\StudentsController;
@@ -63,9 +65,13 @@ Route::middleware(['auth'])->group(function () {
     Route::post('students/delete', [StudentsController::class, 'delete'])->name('students.delete');
 
     //kriteria
-    Route::get('kriteria', [KriteriaController::class, 'view'])->name('kriteria');
+    Route::get('/absensi', [AbsensiController::class, 'view'])->name('absensi');
+    Route::post('/absensi/addProses', [AbsensiController::class, 'addProses'])->name('absensi.addProses');
 
 
     //Profile
     Route::get('profile', [ProfileController::class, 'view'])->name('profile');
+    //Profile
+    Route::get('gaji', [GajiController::class, 'view'])->name('gaji');
+    Route::post('/gaji/addProses', [GajiController::class, 'addProses'])->name('gaji.addProses');
 });
