@@ -8,6 +8,7 @@ use App\Http\Controllers\AuthController;
 use App\Http\Controllers\DashboardController;
 use App\Http\Controllers\GajiController;
 use App\Http\Controllers\KriteriaController;
+use App\Http\Controllers\PenilaianPegawaiController;
 use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\StudentsController;
 use App\Http\Controllers\UsersController;
@@ -71,7 +72,17 @@ Route::middleware(['auth'])->group(function () {
 
     //Profile
     Route::get('profile', [ProfileController::class, 'view'])->name('profile');
-    //Profile
+    //Gaji
     Route::get('gaji', [GajiController::class, 'view'])->name('gaji');
     Route::post('/gaji/addProses', [GajiController::class, 'addProses'])->name('gaji.addProses');
+    //penilaianPegawai
+    Route::get('/penilaianPegawai', [PenilaianPegawaiController::class, 'view'])->name('penilaian');
+    Route::post('/load_data', [PenilaianPegawaiController::class, 'load_data'])->name('penilaian.load_data');
+    Route::post('/penilaianView', [PenilaianPegawaiController::class, 'penilaianView'])->name('penilaian.penilaianView');
+    Route::post('/penilaian/addProses', [PenilaianPegawaiController::class, 'addProses'])->name('penilaian.addProses');
+
+    //Lihat Gaji
+    Route::get('/lihatGaji', [GajiController::class, 'viewPegawai'])->name('lihatGaji');
+    //performa Guru
+    Route::get('/performaPegawai', [PenilaianPegawaiController::class, 'performaPegawai'])->name('performaPegawai');
 });

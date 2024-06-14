@@ -23,9 +23,10 @@
                         <ul class="sub-menu" aria-expanded="false">
                             <li><a href="/admin">Admin</a></li>
                             {{-- <li><a href="users">Pengguna</a></li> --}}
-                            {{-- <li><a href="kriteria">Kriteria</a></li> --}}
+                          
                             <li><a href="/users">Pegawai</a></li>
                             <li><a href="/gaji">Gaji</a></li>
+                            <li><a href="/penilaianPegawai">Penilaian Pegawai</a></li>
 
                         </ul>
                     </li>
@@ -55,6 +56,18 @@
                         <a href="/absensi" class="waves-effect">
                             <i class="mdi mdi-credit-card-multiple"></i>
                             <span>Absensi</span>
+                        </a>
+                    </li>
+                    <li>
+                        <a href="/lihatGaji" class="waves-effect">
+                            <i class="mdi mdi-credit-card-multiple"></i>
+                            <span>Gaji</span>
+                        </a>
+                    </li>
+                    <li>
+                        <a href="/performaPegawai" class="waves-effect">
+                            <i class="mdi mdi-credit-card-multiple"></i>
+                            <span>Performa Guru</span>
                         </a>
                     </li>
 

@@ -29,7 +29,7 @@
         <div class="col-12">
             <div class="card">
                 <div class="card-body">
-                    <a href="addUsers" type="button" class="btn btn-dark waves-effect waves-light ">Add</a>
+                    <a href="/addUsers" type="button" class="btn btn-dark waves-effect waves-light ">Add</a>
                     <br>
                     <br>
                     <div class="table-rep-plugin">
