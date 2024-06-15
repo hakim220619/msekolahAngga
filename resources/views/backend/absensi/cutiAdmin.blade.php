@@ -29,47 +29,6 @@
         <div class="col-12">
             <div class="card">
                 <div class="card-body">
-                    <form action="/absensi/addProses" method="POST" class="custom-validation" enctype="multipart/form-data">
-                        @csrf
-                        <div class="row">
-                            <div class="col-md-3">
-                                <div class="mb-3">
-                                    <label class="col-form-label" for="full_name">Nama
-                                        Lengkap</label>
-                                    <input type="text" class="form-control" id="full_name" name="full_name"
-                                        value="{{ Auth::user()->full_name }}" placeholder="Masukan Nama Lengkap" readonly />
-                                </div>
-                            </div>
-                            <div class="col-md-3">
-                                <div class="mb-3">
-                                    <label class="col-form-label" for="tanggal">Tanggal</label>
-                                    <input type="text" class="form-control" id="tanggal" name="tanggal"
-                                        value="{{ date('Y-m-d ') }}" placeholder="Masukan Nama Lengkap" readonly />
-                                </div>
-                            </div>
-                            <div class="col-md-3">
-                                <div class="mb-3">
-                                    <label class="col-md-2 col-form-label" for="status">Status</label>
-                                    <select class="form-control" name="status" id="sts" required>
-                                        <option value="">-- Pilih --</option>
-                                        <option value="IN">IN</option>
-                                        <option value="OUT">OUT</option>
-
-                                    </select>
-                                </div>
-                            </div>
-                            <div class="col-md-3">
-                                <br>
-                                <br>
-                                <button type="submit" class="btn btn-primary">Simpan</button>
-                            </div>
-                    </form>
-                </div>
-            </div>
-        </div>
-        <div class="col-12">
-            <div class="card">
-                <div class="card-body">
                     <div class="table-rep-plugin">
                         <div class="table-responsive mb-0" data-pattern="priority-columns">
                             <table id="datatable" class="table table-striped table-bordered dt-responsive nowrap"
@@ -78,8 +37,10 @@
                                     <tr>
                                         <th>No</th>
                                         <th>Name</th>
+                                        <th>Jenis</th>
                                         <th>Status</th>
                                         <th>Tanggal</th>
+                                        <th>Action</th>
                                     </tr>
                                 </thead>
 
@@ -87,12 +48,27 @@
                                     @php
                                         $no = 1;
                                     @endphp
-                                    @foreach ($absensi as $a)
+                                    @foreach ($cuti as $a)
                                         <tr>
                                             <td>{{ $no++ }}</td>
                                             <td width="auto">{{ $a->full_name }}</td>
                                             <td width="auto">{{ $a->status }}</td>
+                                            <td width="auto">{{ $a->cuti }}</td>
                                             <td width="auto">{{ $a->tanggal }}</td>
+                                            @if ($a->cuti != 'DITERIMA')
+                                                <td>
+                                                    <div class="row">
+                                                        <div class="col-md-4">
+                                                            <a href="#" onclick="deleteItem(this)"
+                                                                data-id="{{ $a->id }}"><i class="fa fa-check-circle"
+                                                                    style="color:black"></i></a>
+                                                        </div>
+                                                    </div>
+                                                </td>
+                                            @else
+                                                <td></td>
+                                            @endif
+
                                         </tr>
                                     @endforeach
                                 </tbody>
@@ -104,15 +80,13 @@
         </div>
         <!-- end col -->
     </div>
-    <!-- end row -->
-    {{-- <script>
+    <script>
         function deleteItem(e) {
-
             let id = e.getAttribute('data-id');
-
+            console.log(id);
             Swal.fire({
                 title: 'Are you sure?',
-                text: "You won't be able to revert this!",
+                text: "You won't be able to Accept this!",
                 icon: 'warning',
                 showCancelButton: true,
                 confirmButtonColor: '#3085d6',
@@ -121,16 +95,16 @@
             }).then((result) => {
                 if (result.isConfirmed) {
                     setInterval(function() {
-                            location.reload();
+                            // location.reload();
                         }, 30000),
                         Swal.fire(
-                            'Deleted!',
-                            'Your file has been deleted.',
+                            'Cuti!',
+                            'Cuti Berhasil.',
                             'success'
                         ),
                         $.ajax({
-                            type: 'GET',
-                            url: '{{ url('/admin/delete/') }}/' + id,
+                            type: 'POST',
+                            url: '{{ url('/cuti/prosesAcc/') }}/' + id,
                             data: {
                                 "_token": "{{ csrf_token() }}",
                             },
@@ -139,8 +113,8 @@
                                 if (data.success) {
 
                                     swalWithBootstrapButtons.fire(
-                                        'Deleted!',
-                                        'Your file has been deleted.',
+                                        'Cuti!',
+                                        'Cuti Berhasil.',
                                         "success",
 
                                     );
@@ -157,5 +131,5 @@
             })
 
         }
-    </script> --}}
+    </script>
 @endsection

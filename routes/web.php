@@ -85,4 +85,8 @@ Route::middleware(['auth'])->group(function () {
     Route::get('/lihatGaji', [GajiController::class, 'viewPegawai'])->name('lihatGaji');
     //performa Guru
     Route::get('/performaPegawai', [PenilaianPegawaiController::class, 'performaPegawai'])->name('performaPegawai');
+    //Cuti
+    Route::get('/cuti', [AbsensiController::class, 'cuti'])->name('cuti');
+    Route::get('/cutiAdmin', [AbsensiController::class, 'cutiAdmin'])->name('cutiAdmin');
+    Route::post('/cuti/prosesAcc/{id}', [AbsensiController::class, 'prosesAcc'])->name('prosesAcc');
 });

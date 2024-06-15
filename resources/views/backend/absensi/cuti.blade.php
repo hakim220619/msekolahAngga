@@ -43,8 +43,8 @@
                             <div class="col-md-3">
                                 <div class="mb-3">
                                     <label class="col-form-label" for="tanggal">Tanggal</label>
-                                    <input type="text" class="form-control" id="tanggal" name="tanggal"
-                                        value="{{ date('Y-m-d ') }}" placeholder="Masukan Nama Lengkap" readonly />
+                                    <input type="date" class="form-control" id="tanggal" name="tanggal"
+                                        value="{{ date('Y-m-d') }}" placeholder="Masukan Nama Lengkap" />
                                 </div>
                             </div>
                             <div class="col-md-3">
@@ -52,9 +52,7 @@
                                     <label class="col-md-2 col-form-label" for="status">Status</label>
                                     <select class="form-control" name="status" id="sts" required>
                                         <option value="">-- Pilih --</option>
-                                        <option value="IN">IN</option>
-                                        <option value="OUT">OUT</option>
-
+                                        <option value="CUTI">Cuti</option>
                                     </select>
                                 </div>
                             </div>
