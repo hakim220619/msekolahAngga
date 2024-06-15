@@ -39,8 +39,6 @@ class GajiController extends Controller
         $data['month'] = $month;
         $data['no'] = $no;
 
-
-
         // dd($data);
         return view('backend.gaji.hasilGaji', $data);
     }
