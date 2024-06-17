@@ -67,7 +67,7 @@ File: " . asset('storage/pdf/' . $filename . '.pdf') . ""));
                     "Content-Type: application/json",
                 ],
             ]);
-
+            curl_exec($curl);
             return response($response);
         } else {
             return response(array('msg' => 'There is no data to export.'));
