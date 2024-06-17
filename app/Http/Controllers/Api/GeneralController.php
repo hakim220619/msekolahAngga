@@ -47,26 +47,26 @@ class GeneralController extends Controller
                 'file'      => asset('storage/pdf/' . $filename . '.pdf'),
                 'file_name' =>  Auth::user()->full_name
             );
-            $body = array(
-                "api_key" => "50d645dbe85c8431b94b98f085291148d382ff03",
-                "receiver" => Auth::user()->phone,
-                "data" => array("message" => "Download berhasil selesai.
-File: " . asset('storage/pdf/' . $filename . '.pdf') . ""));
-            $curl = curl_init();
-            curl_setopt_array($curl, [
-                CURLOPT_URL => "https://wa.sppapp.com/api/send-message",
-                CURLOPT_RETURNTRANSFER => true,
-                CURLOPT_ENCODING => "",
-                CURLOPT_MAXREDIRS => 10,
-                CURLOPT_TIMEOUT => 30,
-                CURLOPT_HTTP_VERSION => CURL_HTTP_VERSION_1_1,
-                CURLOPT_CUSTOMREQUEST => "POST",
-                CURLOPT_POSTFIELDS => json_encode($body),
-                CURLOPT_HTTPHEADER => [
-                    "Accept: */*",
-                    "Content-Type: application/json",
-                ],
-            ]);
+//             $body = array(
+//                 "api_key" => "50d645dbe85c8431b94b98f085291148d382ff03",
+//                 "receiver" => Auth::user()->phone,
+//                 "data" => array("message" => "Download berhasil selesai.
+// File: " . asset('storage/pdf/' . $filename . '.pdf') . ""));
+//             $curl = curl_init();
+//             curl_setopt_array($curl, [
+//                 CURLOPT_URL => "https://wa.sppapp.com/api/send-message",
+//                 CURLOPT_RETURNTRANSFER => true,
+//                 CURLOPT_ENCODING => "",
+//                 CURLOPT_MAXREDIRS => 10,
+//                 CURLOPT_TIMEOUT => 30,
+//                 CURLOPT_HTTP_VERSION => CURL_HTTP_VERSION_1_1,
+//                 CURLOPT_CUSTOMREQUEST => "POST",
+//                 CURLOPT_POSTFIELDS => json_encode($body),
+//                 CURLOPT_HTTPHEADER => [
+//                     "Accept: */*",
+//                     "Content-Type: application/json",
+//                 ],
+//             ]);
 
             return response($response);
         } else {
