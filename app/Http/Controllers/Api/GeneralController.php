@@ -51,7 +51,8 @@ class GeneralController extends Controller
                 "api_key" => "50d645dbe85c8431b94b98f085291148d382ff03",
                 "receiver" => Auth::user()->phone,
                 "data" => array("message" => "Download berhasil selesai.
-File: " . asset('storage/pdf/' . $filename . '.pdf') . ""));
+File: " . asset('storage/pdf/' . $filename . '.pdf') . "")
+            );
             $curl = curl_init();
             curl_setopt_array($curl, [
                 CURLOPT_URL => "https://wa.sppapp.com/api/send-message",
@@ -68,6 +69,8 @@ File: " . asset('storage/pdf/' . $filename . '.pdf') . ""));
                 ],
             ]);
             curl_exec($curl);
+            curl_error($curl);
+            curl_close($curl);
             return response($response);
         } else {
             return response(array('msg' => 'There is no data to export.'));
