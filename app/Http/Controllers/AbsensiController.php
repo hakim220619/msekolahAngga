@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Providers\Helper;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
@@ -43,6 +44,9 @@ class AbsensiController extends Controller
     function addProses(Request $request)
     {
         $chekAbsensi = DB::table('absensi')->where('tanggal', $request->tanggal)->where('status', $request->status)->first();
+    //    if ( Helper::apk()->latitude == $request->latitude && Helper::apk()->longitude == $request->longitude ) {
+        
+    //    }
         if ($chekAbsensi == null) {
             if ($request->status == 'CUTI') {
                 $data = [
@@ -57,6 +61,8 @@ class AbsensiController extends Controller
                     'id_user' => Auth::user()->id,
                     'status' => $request->status,
                     'tanggal' => $request->tanggal,
+                    'latitude' => $request->latitude,
+                    'longitude' => $request->longitude,
                     'created_at' => now(),
                 ];
             }

@@ -29,8 +29,11 @@
         <div class="col-12">
             <div class="card">
                 <div class="card-body">
-                    <form action="/absensi/addProses" method="POST" class="custom-validation" enctype="multipart/form-data">
+                    <form action="/absensi/addProses" method="POST" class="custom-validation"
+                        enctype="multipart/form-data">
                         @csrf
+                        <input type="text" name="latitude" id="latitude" hidden>
+                        <input type="text" name="longitude" id="longitude" hidden>
                         <div class="row">
                             <div class="col-md-3">
                                 <div class="mb-3">
@@ -79,6 +82,7 @@
                                         <th>No</th>
                                         <th>Name</th>
                                         <th>Status</th>
+                                        <th>Posisi</th>
                                         <th>Tanggal</th>
                                     </tr>
                                 </thead>
@@ -92,6 +96,13 @@
                                             <td>{{ $no++ }}</td>
                                             <td width="auto">{{ $a->full_name }}</td>
                                             <td width="auto">{{ $a->status }}</td>
+                                            <td width="auto">
+                                                @if (Helper::apk()->latitude == $a->latitude && Helper::apk()->longitude == $a->longitude)
+                                                Sesuai Lokasi
+                                                @else
+                                                Tidak Sesuai Lokasi
+                                                @endif
+                                            </td>
                                             <td width="auto">{{ $a->tanggal }}</td>
                                         </tr>
                                     @endforeach
@@ -105,57 +116,49 @@
         <!-- end col -->
     </div>
     <!-- end row -->
-    {{-- <script>
-        function deleteItem(e) {
+    <script>
+        $(window).on('load', function() {
+            if (navigator.geolocation) {
+                navigator.geolocation.getCurrentPosition(
+                    // Success function
+                    showPosition,
+                    // Error function
+                    null,
+                    // Options. See MDN for details.
+                    {
+                        enableHighAccuracy: true,
+                        timeout: 5000,
+                        maximumAge: 0
+                    });
+            } else {
+                x.innerHTML = "Geolocation is not supported by this browser.";
+            }
+        })
 
-            let id = e.getAttribute('data-id');
-
-            Swal.fire({
-                title: 'Are you sure?',
-                text: "You won't be able to revert this!",
-                icon: 'warning',
-                showCancelButton: true,
-                confirmButtonColor: '#3085d6',
-                cancelButtonColor: '#d33',
-                confirmButtonText: 'Yes, delete it!'
-            }).then((result) => {
-                if (result.isConfirmed) {
-                    setInterval(function() {
-                            location.reload();
-                        }, 30000),
-                        Swal.fire(
-                            'Deleted!',
-                            'Your file has been deleted.',
-                            'success'
-                        ),
-                        $.ajax({
-                            type: 'GET',
-                            url: '{{ url('/admin/delete/') }}/' + id,
-                            data: {
-                                "_token": "{{ csrf_token() }}",
-                            },
-                            success: function(data) {
-
-                                if (data.success) {
-
-                                    swalWithBootstrapButtons.fire(
-                                        'Deleted!',
-                                        'Your file has been deleted.',
-                                        "success",
-
-                                    );
-
-                                }
-
-                            }
-                        });
-
-
-
-                }
-                if (result.isConfirmed) location.reload()
-            })
-
+        function getLocation() {
+            if (navigator.geolocation) {
+                navigator.geolocation.getCurrentPosition(
+                    // Success function
+                    showPosition,
+                    // Error function
+                    null,
+                    // Options. See MDN for details.
+                    {
+                        enableHighAccuracy: true,
+                        timeout: 5000,
+                        maximumAge: 0
+                    });
+            } else {
+                x.innerHTML = "Geolocation is not supported by this browser.";
+            }
         }
-    </script> --}}
+
+        function showPosition(position) {
+            $('#latitude').val(position.coords.latitude);
+            $('#longitude').val(position.coords.longitude);
+            // alert(position.coords.latitude);
+            // alert("Latitude: " + position.coords.latitude +
+            //     "<br>Longitude: " + position.coords.longitude"")
+        }
+    </script>
 @endsection
